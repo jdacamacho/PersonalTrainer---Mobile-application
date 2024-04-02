@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PersonalTrainer</string>
+    <string name="Title_Register">YOUR PERSONAL TRAINER</string>
+    <string name="Slogan_register">La mejor aplicación para tus entrenamientos</string>
+    <string name="Name_register">Nombres:</string>
+    <string name="LastNames_register">Apellidos:</string>
+    <string name="Age_register">Edad:</string>
+    <string name="Height_register">Estatura(mts):</string>
+    <string name="Weight_register">Peso(Kg):</string>
+    <string name="Email_register">Email:</string>
+    <string name="UserName_register">Username:</string>
+    <string name="Password_register">Contraseña:</string>
+    <string name="Name_placeHolder">Ingrese sus nombres</string>
+    <string name="LastNames_placeHolder">Ingreses sus apellidos</string>
+    <string name="Age_placeHolder">Ingrese su edad</string>
+    <string name="Height_placeHolder">Ingrese su estatura en metros</string>
+    <string name="Weight_placeHolder">Ingrese su peso en Kilogramos</string>
+    <string name="Email_placeHolder">Ingrese su email</string>
+    <string name="UserName_placeHolder">Ingrese su username</string>
+    <string name="Password_placeHolder">Ingrese su contraseña</string>
+    <string name="Buttom_Register">Crear Usuario</string>
+</resources>
