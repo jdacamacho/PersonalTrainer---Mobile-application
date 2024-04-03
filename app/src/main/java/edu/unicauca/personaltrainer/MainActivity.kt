@@ -205,3 +205,6 @@ fun PreviewForm(){
 /*********** Fin de Formulario de registro **********/
 
 /*********** Inicio pagina de principal **********/
+
+/*********** Inicio navegación **********/
+

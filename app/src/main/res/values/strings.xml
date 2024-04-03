@@ -19,4 +19,9 @@
     <string name="UserName_placeHolder">Ingrese su username</string>
     <string name="Password_placeHolder">Ingrese su contraseña</string>
     <string name="Buttom_Register">Crear Usuario</string>
+    <string name="nav_exercises">Ejercicios</string>
+    <string name="nav_rutines">Rutinas</string>
+    <string name="nav_personalitation">Personalizar</string>
+    <string name="nav_records">Records</string>
+    <string name="nav_me">Yo</string>
 </resources>
