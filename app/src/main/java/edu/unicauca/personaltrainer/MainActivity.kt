@@ -206,11 +206,11 @@ fun PreviewForm(){
 
 /*********** Fin de Formulario de registro **********/
 
-<<<<<<< HEAD
+
 /*********** Inicio pagina de principal **********/
 
 /*********** Inicio navegación **********/
-=======
+
 /*********** Inicio pagina de rutinas **********/
 
 @Composable
@@ -345,5 +345,5 @@ fun routineExercisesBasic(){
 fun routineExercises(){
     routineExercises();
 }
->>>>>>> b0b721015bed1ec988999e55fe994022ea010645
+
 
