@@ -19,4 +19,6 @@
     <string name="UserName_placeHolder">Ingrese su username</string>
     <string name="Password_placeHolder">Ingrese su contraseña</string>
     <string name="Buttom_Register">Crear Usuario</string>
+    <string name="header_routines">Rutinas</string>
+    <string name="butto_look_routine">Ver rutina</string>
 </resources>
