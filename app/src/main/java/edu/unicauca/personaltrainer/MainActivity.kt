@@ -338,6 +338,6 @@ fun routineExercisesBasic(){
 @Preview(showBackground = true)
 @Composable
 fun routineExercises(){
-    routineExercises();
+    routineExercisesBasic();
 }
 
