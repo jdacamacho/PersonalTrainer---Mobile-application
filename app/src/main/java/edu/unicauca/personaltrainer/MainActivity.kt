@@ -22,24 +22,42 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+
 import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +70,16 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    routineExercisesBasic();
+                    val navController = rememberNavController()
+                    val navigateAction = remember(navController){
+                        NavegationActions(navController)
+                    }
+                    val navBackStackEnry by navController.currentBackStackEntryAsState()
+                    val selectedDestination = navBackStackEnry?.destination?.route?:AppRoute.Routine
+
+                    AppContent(navController = navController,
+                        selectedDestination = selectedDestination,
+                        navigate = navigateAction::navigateTo)
                 }
             }
         }
@@ -211,6 +238,63 @@ fun PreviewForm(){
 
 /*********** Inicio navegación **********/
 
+@Composable
+fun MyAppBottomNavigation(
+    selectedDestination: String,
+    navigate: (NavItem)->Unit
+)
+{
+    NavigationBar (modifier = Modifier.fillMaxWidth()){
+        Nav_Items.forEach{ destination ->
+            NavigationBarItem(selected = selectedDestination == destination.route ,
+                onClick = { navigate(destination) },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = destination.selectedIcon),
+                        contentDescription = stringResource(id = destination.iconTextId)
+                    )
+                }
+            )
+        }
+    }
+}
+@Composable
+fun AppContent(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    selectedDestination:String,
+    navigate:(NavItem)->Unit
+)
+{
+    Row(modifier = modifier.fillMaxSize())
+    {
+        Column(modifier = modifier.fillMaxSize()) {
+            NavHost(
+                modifier = Modifier.weight(1f),
+                navController = navController,
+                startDestination = AppRoute.Routine){
+                composable(AppRoute.Routine){
+
+                }
+                composable(AppRoute.Personalize){
+
+                }
+                composable(AppRoute.Exercises){
+
+                }
+                composable(AppRoute.Records){
+
+                }
+                composable(AppRoute.Me){
+
+                }
+            }
+            MyAppBottomNavigation(
+                selectedDestination = selectedDestination,
+                navigate = navigate)
+        }
+    }
+}
 /*********** Inicio pagina de rutinas **********/
 
 @Composable
