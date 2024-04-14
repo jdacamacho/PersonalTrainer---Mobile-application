@@ -48,6 +48,21 @@ fun headerHomeRoutines(modifier: Modifier = Modifier){
         )
     }
 }
+
+@Composable
+fun lookExercise(onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier
+            .width(300.dp)
+            .padding(bottom = 20.dp)
+            .height(40.dp),
+        colors = ButtonDefaults.buttonColors(Color(0xFF1D4EA5))
+    ) {
+        Text(text = stringResource(R.string.butto_look_routine))
+    }
+}
+
 @Composable
 fun cardExercise(
     imageResource:Int,
@@ -100,20 +115,6 @@ fun cardExercise(
             )
         }
         lookExercise(onClick = {});
-    }
-}
-
-@Composable
-fun lookExercise(onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .width(300.dp)
-            .padding(bottom = 20.dp)
-            .height(40.dp),
-        colors = ButtonDefaults.buttonColors(Color(0xFF1D4EA5))
-    ) {
-        Text(text = stringResource(R.string.butto_look_routine))
     }
 }
 

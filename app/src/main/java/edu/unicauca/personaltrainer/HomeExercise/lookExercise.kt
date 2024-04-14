@@ -29,15 +29,15 @@ import androidx.compose.ui.unit.dp
 import edu.unicauca.personaltrainer.R
 
 @Composable
-fun headerLookExercise(modifier: Modifier = Modifier){
+fun HeaderPrincipalLookExercise(modifier: Modifier = Modifier){
     Column(
         modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(R.string.header_routines),
             modifier = modifier
-                .paddingFromBaseline(top = 30.dp, bottom = 8.dp)
-                .padding(start = 20.dp),
+                .paddingFromBaseline(top = 30.dp, bottom = 8.dp),
             style = MaterialTheme.typography.titleLarge,
             color = Color(0xFF1D4EA5)
         )
@@ -45,19 +45,39 @@ fun headerLookExercise(modifier: Modifier = Modifier){
 }
 
 @Composable
-fun imageExercise(
-    modifier: Modifier = Modifier
-) {
+fun HeaderLookExercise(
+    modifier: Modifier = Modifier,
+    kindExercise: String
+    ){
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = kindExercise,
+            modifier = modifier
+                .paddingFromBaseline(top = 30.dp, bottom = 8.dp),
+            style = MaterialTheme.typography.titleLarge,
+            color = Color(0xFF1D4EA5)
+        )
+    }
+}
+
+@Composable
+fun ImageLookExercise(
+    modifier: Modifier = Modifier,
+    imageResource:Int,
+    ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(20.dp)
+            .padding(top = 40.dp, start = 20.dp, end = 20.dp, bottom = 40.dp)
             .fillMaxWidth()
             .height(200.dp)
             .border(1.dp, Color(0xFF1D4EA5), shape = RoundedCornerShape(8.dp))
     ) {
         Image(
-            painter = painterResource(R.drawable.logopersonaltrainer),
+            painter = painterResource(imageResource),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -67,8 +87,28 @@ fun imageExercise(
 }
 
 @Composable
+fun FooterLookExercise(
+    modifier: Modifier = Modifier,
+    kindExercise: String){
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = kindExercise,
+            modifier = modifier
+                .paddingFromBaseline(top = 270.dp, bottom = 8.dp),
+            style = MaterialTheme.typography.titleLarge,
+            color = Color(0xFF1D4EA5)
+        )
+    }
+}
+
+@Composable
 fun cardExerciseDetails(){
-    imageExercise();
+    //HeaderLookExercise();
+    //ImageLookExercise();
+    //FooterLookExercise();
 }
 
 

@@ -87,8 +87,8 @@ fun fieldForm(
                 .width(350.dp),
             leadingIcon = {},
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent  ,
+                unfocusedIndicatorColor = Color.Transparent ,
                 unfocusedContainerColor = Color.LightGray,
                 focusedContainerColor = MaterialTheme.colorScheme.surface
             ),
