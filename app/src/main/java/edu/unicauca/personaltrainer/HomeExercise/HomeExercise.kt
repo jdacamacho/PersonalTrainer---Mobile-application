@@ -141,7 +141,7 @@ fun routineCards() {
                 },
                 numberOfExercises = "4 ejercicios",
                 exercises = when (index){
-                    0 -> "Curl con mancuernas\nCurl con barra\nCurl martillo\nCurl Antebrazo"
+                    0 -> "Curl con mancuernas\nCurl con barra\nCurl martillo\nCurl Predicador"
                     1 -> "Jalon al pecho\nRemo T\nRemo con barra\nJalon sentado"
                     2 -> "Press banca plano\nPress banca inclinado\nPress con mancuernas\nFondos"
                     3 -> "Sentadilla en Smith\nSentadilla Hack\nFemoral acostado\nPeso muerto con barra"

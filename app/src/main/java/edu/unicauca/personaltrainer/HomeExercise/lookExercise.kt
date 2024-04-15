@@ -73,7 +73,7 @@ fun ImageLookExercise(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 10.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            .padding(top = 10.dp, start = 50.dp, end = 50.dp, bottom = 20.dp)
             .fillMaxWidth()
             .height(200.dp)
             .border(1.dp, Color(0xFF1D4EA5), shape = RoundedCornerShape(8.dp))
@@ -125,26 +125,20 @@ fun routineCardArms() {
         items(4) { index ->
             cardExerciseDetails(
                 kindExercise = when (index) {
-                    0 -> "Hola"
-                    1 -> "Hola"
-                    2 -> ""
-                    3 -> ""
+                    0 -> "Curl con mancuernas"
+                    1 -> "Curl con barra"
+                    2 -> "Curl martillo"
+                    3 -> "Curl predicador"
                     else -> ""
                 },
                 imageResource = when (index) {
-                    0 -> R.drawable.brazos
-                    1 -> R.drawable.espalda
-                    2 -> R.drawable.pecho
-                    3 -> R.drawable.pierna
+                    0 -> R.drawable.curl_biceps
+                    1 -> R.drawable.curl_barra
+                    2 -> R.drawable.curl_martillo
+                    3 -> R.drawable.predicador_biceps
                     else -> 0
                 },
-                repeats = when (index){
-                    0 -> "Curl con mancuernas\nCurl con barra\nCurl martillo\nCurl Antebrazo"
-                    1 -> "Jalon al pecho\nRemo T\nRemo con barra\nJalon sentado"
-                    2 -> "Press banca plano\nPress banca inclinado\nPress con mancuernas\nFondos"
-                    3 -> "Sentadilla en Smith\nSentadilla Hack\nFemoral acostado\nPeso muerto con barra"
-                    else -> ""
-                }
+                repeats = "12 repeticiones x 4 sets"
             )
         }
     }
