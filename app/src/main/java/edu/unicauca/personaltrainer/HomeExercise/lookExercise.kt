@@ -172,8 +172,63 @@ fun routineCardBack() {
 }
 
 
+@Composable
+fun routineCardChest() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        items(4) { index ->
+            cardExerciseDetails(
+                kindExercise = when (index) {
+                    0 -> "Press banco plano"
+                    1 -> "Press banco inclinado"
+                    2 -> "Press con mancuernas"
+                    3 -> "Fondos"
+                    else -> ""
+                },
+                imageResource = when (index) {
+                    0 -> R.drawable.bancoplano
+                    1 -> R.drawable.bancoinclinado
+                    2 -> R.drawable.bancomancuernas
+                    3 -> R.drawable.fondos
+                    else -> 0
+                },
+                repeats = "12 repeticiones x 4 sets"
+            )
+        }
+    }
+}
+
+
+@Composable
+fun routineCardLegs() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        items(4) { index ->
+            cardExerciseDetails(
+                kindExercise = when (index) {
+                    0 -> "Sentadilla Smith"
+                    1 -> "Sentadilla Hack"
+                    2 -> "Femoral acostado"
+                    3 -> "Peso muerto con mancuernas"
+                    else -> ""
+                },
+                imageResource = when (index) {
+                    0 -> R.drawable.sentadillasmith
+                    1 -> R.drawable.hacka
+                    2 -> R.drawable.femoral
+                    3 -> R.drawable.pesomuertp
+                    else -> 0
+                },
+                repeats = "12 repeticiones x 4 sets"
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    routineCardBack();
+    routineCardChest();
 }
