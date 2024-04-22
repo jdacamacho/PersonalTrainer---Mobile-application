@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -227,8 +229,56 @@ fun routineCardLegs() {
     }
 }
 
+@Composable
+fun basicChest(){
+    Surface (
+        modifier = Modifier.fillMaxSize()
+    ){
+        Column {
+            HeaderPrincipalLookExercise();
+            routineCardChest();
+        }
+    }
+}
+
+@Composable
+fun basicLegs(){
+    Surface (
+        modifier = Modifier.fillMaxSize()
+    ){
+        Column {
+            HeaderPrincipalLookExercise();
+            routineCardLegs();
+        }
+    }
+}
+
+@Composable
+fun basicArms(){
+    Surface (
+        modifier = Modifier.fillMaxSize()
+    ){
+        Column {
+            HeaderPrincipalLookExercise();
+            routineCardArms();
+        }
+    }
+}
+
+@Composable
+fun basicBack(){
+    Surface (
+        modifier = Modifier.fillMaxSize()
+    ){
+        Column {
+            HeaderPrincipalLookExercise();
+            routineCardBack();
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    routineCardChest();
+    basicBack();
 }
