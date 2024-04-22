@@ -144,8 +144,36 @@ fun routineCardArms() {
     }
 }
 
+@Composable
+fun routineCardBack() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        items(4) { index ->
+            cardExerciseDetails(
+                kindExercise = when (index) {
+                    0 -> "Jalon al pecho"
+                    1 -> "Remo T"
+                    2 -> "Remo con barra"
+                    3 -> "Jalon sentado"
+                    else -> ""
+                },
+                imageResource = when (index) {
+                    0 -> R.drawable.jalonalpecho
+                    1 -> R.drawable.remot
+                    2 -> R.drawable.remoconbarra
+                    3 -> R.drawable.remosentado
+                    else -> 0
+                },
+                repeats = "12 repeticiones x 4 sets"
+            )
+        }
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    routineCardArms();
+    routineCardBack();
 }
