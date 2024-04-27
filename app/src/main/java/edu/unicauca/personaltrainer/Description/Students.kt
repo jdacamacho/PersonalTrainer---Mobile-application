@@ -2,6 +2,7 @@ package edu.unicauca.personaltrainer.Description
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,6 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import edu.unicauca.personaltrainer.HomeExercise.cardExerciseDetails
 import edu.unicauca.personaltrainer.R
 
 @Composable
@@ -48,7 +51,7 @@ fun Description(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 40.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            .padding(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             .fillMaxWidth()
             .height(200.dp)
     ) {
@@ -70,10 +73,11 @@ fun Description(
 fun cardStudent(
     modifier: Modifier = Modifier,
     imageResource:Int,
+    descriptionStudent:String
 ) {
     Row(
         modifier = Modifier
-            .padding(top = 220.dp, start = 10.dp, end = 10.dp, bottom = 20.dp)
+            .padding(top = 120.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
             .fillMaxWidth()
             .height(150.dp)
             .border(1.dp, Color(0xFF1D4EA5), shape = RoundedCornerShape(0.dp))
@@ -88,14 +92,38 @@ fun cardStudent(
         Text(
             modifier = Modifier.padding(top = 10.dp, start = 6.dp, end = 6.dp),
             textAlign = TextAlign.Justify,
-            text = "Hola, me llamo Julian Camacho, Ingeniero de Sistemas de la Universidad del Cauca con enfoque en desarrollo backend, arquitecturas software, gestión de bases de datos y captura de requisitos funcionales y no funcionales.")
+            text = descriptionStudent)
+    }
+}
+
+@Composable
+fun developers(){
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(0.dp)
+    ) {
+        items(4) { index ->
+            cardStudent(
+                imageResource = when (index) {
+                    0 -> R.drawable.camacho
+                    1 -> R.drawable.benitez
+                    2 -> R.drawable.simon
+                    else -> 0
+                },
+                descriptionStudent = when (index) {
+                    0 -> stringResource(R.string.description_camacho)
+                    1 -> stringResource(R.string.description_benitez)
+                    2 -> stringResource(R.string.descripcion_simon)
+                    else -> ""
+                }
+            )
+        }
     }
 }
 
 @Composable
 @Preview(showBackground = true)
 fun previewDescription(){
-    Description()
-    cardStudent(imageResource = R.drawable.camacho)
+    //Description()
+    developers()
 }
 
