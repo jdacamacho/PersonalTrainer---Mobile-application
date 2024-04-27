@@ -28,5 +28,7 @@
 
     <string name="header_routines">Rutinas</string>
     <string name="butto_look_routine">Ver rutina</string>
+    <string name="description">Aplicación realizada para la comunidad fit. Donde podras encontrar los mejores ejercicios y las mejores rutinas que podras aplicar en tu gimnasio.</string>
+    <string name="title_description">Descripción</string>
 
 </resources>
