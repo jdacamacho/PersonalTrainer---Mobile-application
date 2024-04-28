@@ -42,6 +42,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import edu.unicauca.personaltrainer.Auth.form
+import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
+import edu.unicauca.personaltrainer.Personalized.Personalize
+import edu.unicauca.personaltrainer.Personalized.PersonalizedVoid
+import edu.unicauca.personaltrainer.Personalized.SampleRoutines
+import edu.unicauca.personaltrainer.ui.theme.BlueMain
 
 
 import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
@@ -60,8 +65,8 @@ class MainActivity : ComponentActivity() {
                     val navigateAction = remember(navController){
                         NavegationActions(navController)
                     }
-                    val navBackStackEnry by navController.currentBackStackEntryAsState()
-                    val selectedDestination = navBackStackEnry?.destination?.route?:AppRoute.Routine
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val selectedDestination = navBackStackEntry?.destination?.route?:AppRoute.Routine
 
                     AppContent(navController = navController,
                         selectedDestination = selectedDestination,
@@ -167,14 +172,18 @@ fun MyAppBottomNavigation(
     navigate: (NavItem)->Unit
 )
 {
-    NavigationBar (modifier = Modifier.fillMaxWidth()){
+    NavigationBar(
+        containerColor = BlueMain,
+        contentColor = Color.Black
+    ){
         Nav_Items.forEach{ destination ->
             NavigationBarItem(selected = selectedDestination == destination.route ,
                 onClick = { navigate(destination) },
                 icon = {
                     Icon(
                         painter = painterResource(id = destination.selectedIcon),
-                        contentDescription = stringResource(id = destination.iconTextId)
+                        contentDescription = stringResource(id = destination.iconTextId),
+                        modifier = Modifier.size(35.dp)
                     )
                 }
             )
@@ -189,18 +198,18 @@ fun AppContent(
     navigate:(NavItem)->Unit
 )
 {
-    Row(modifier = modifier.fillMaxSize())
+    Row()
     {
-        Column(modifier = modifier.fillMaxSize()) {
+        Column() {
             NavHost(
                 modifier = Modifier.weight(1f),
                 navController = navController,
-                startDestination = AppRoute.Routine){
+                startDestination = AppRoute.Personalize){
                 composable(AppRoute.Routine){
-
+                    routineExercisesBasic()
                 }
                 composable(AppRoute.Personalize){
-
+                    Personalize(SampleRoutines.routineSample)
                 }
                 composable(AppRoute.Exercises){
 
@@ -216,6 +225,26 @@ fun AppContent(
                 selectedDestination = selectedDestination,
                 navigate = navigate)
         }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewNavegacion(){
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        val navController = rememberNavController()
+        val navigateAction = remember(navController){
+            NavegationActions(navController)
+        }
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val selectedDestination = navBackStackEntry?.destination?.route?:AppRoute.Routine
+
+        AppContent(navController = navController,
+            selectedDestination = selectedDestination,
+            navigate = navigateAction::navigateTo)
     }
 }
 /*********** Inicio pagina de rutinas **********/

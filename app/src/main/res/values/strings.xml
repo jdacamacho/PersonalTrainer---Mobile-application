@@ -28,5 +28,8 @@
 
     <string name="header_routines">Rutinas</string>
     <string name="butto_look_routine">Ver rutina</string>
+    <string name="Perzonalize_TItle">PERSONALIZAR</string>
+    <string name="void_rutine_text">Crea tu primera rutina personalizada</string>
+    <string name="start_button">Comenzar</string>
 
 </resources>
