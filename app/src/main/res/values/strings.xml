@@ -38,5 +38,7 @@
     <string name="description_camacho">Hola, me llamo Julian Camacho, Ingeniero de Sistemas de la Universidad del Cauca con enfoque en desarrollo backend, arquitecturas software, gestión de bases de datos y captura de requisitos funcionales y no funcionales.</string>
     <string name="description_benitez">Hola a todos! , Soy Santiago Benitez Ingeniero de Sistemas con conocimientos en bases de datos relacionales, arquitectura de aplicaciones y arquitectura de la información digital.</string>
     <string name="descripcion_simon">Hola Soy Simon Guzman, estudiante de noveno semestre de Ingenieria de Sistemas en la Universidad del Cauca, mis áreas de enfoque son los temas relacionados al rol de analista y el tema de planeación de arquitecturas o elementos relacionados.</string>
+    <string name="UserName_Login">Usuario:</string>
+    <string name="UserName_placeHolderLogin">Ingrese su usuario</string>
 
 </resources>
