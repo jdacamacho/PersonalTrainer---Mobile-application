@@ -126,24 +126,6 @@ fun ImageLookExercisesList(
 }
 
 @Composable
-fun FooterLookExercisesList(
-    modifier: Modifier = Modifier,
-    repeats: String){
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = repeats,
-            modifier = modifier
-                .paddingFromBaseline(top = 0.dp, bottom = 8.dp),
-            style = MaterialTheme.typography.titleLarge,
-            color = Color(0xFF1D4EA5)
-        )
-    }
-}
-
-@Composable
 fun cardExerciseDetails(
     kindExercise: String,
     imageResource: Int,
