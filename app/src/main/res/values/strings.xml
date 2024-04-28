@@ -40,5 +40,7 @@
     <string name="descripcion_simon">Hola Soy Simon Guzman, estudiante de noveno semestre de Ingenieria de Sistemas en la Universidad del Cauca, mis áreas de enfoque son los temas relacionados al rol de analista y el tema de planeación de arquitecturas o elementos relacionados.</string>
     <string name="UserName_Login">Usuario:</string>
     <string name="UserName_placeHolderLogin">Ingrese su usuario</string>
+    <string name="Header_exercise">Ejercicios</string>
+    <string name="Areas_exercises">Areas de enfoque</string>
 
 </resources>
