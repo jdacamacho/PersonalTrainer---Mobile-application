@@ -5,7 +5,7 @@ import edu.unicauca.personaltrainer.R
 object SampleExercises {
     val exerciseSample = listOf(
         Exercise(name = "Press inclinado con mancuernas",
-            description =  " Ejercicio para pectorales superiores. Se realiza acostado en un banco inclinado, levantando y bajando las mancuernas sobre el pecho.",
+            description =  "Ejercicio para pectorales superiores. Se realiza acostado en un banco inclinado, levantando y bajando las mancuernas sobre el pecho.",
             icon = R.drawable.bancoinclinado,
             muscles = listOf("Pecho")
 
@@ -16,7 +16,7 @@ object SampleExercises {
             muscles = listOf("Pecho")
         ),
         Exercise(name = "Press plano con barra",
-            description =  " Ejercicio clásico para pectorales. Se realiza acostado en un banco plano levantando y bajando la barra sobre el pecho.",
+            description =  "Ejercicio clásico para pectorales. Se realiza acostado en un banco plano levantando y bajando la barra sobre el pecho.",
             icon = R.drawable.bancoinclinado,
             muscles = listOf("Pecho")
         ),
@@ -41,7 +41,7 @@ object SampleExercises {
             muscles = listOf("Femoral")
         ),
         Exercise(name = "Sentadilla hacka",
-            description =  " Variante de sentadilla. Se realiza con una máquina específica con la barra detrás del cuerpo, trabajando especialmente los cuádriceps",
+            description =  "Variante de sentadilla. Se realiza con una máquina específica con la barra detrás del cuerpo, trabajando especialmente los cuádriceps",
             icon = R.drawable.hacka,
             muscles = listOf("Cuádriceps")
         ),
