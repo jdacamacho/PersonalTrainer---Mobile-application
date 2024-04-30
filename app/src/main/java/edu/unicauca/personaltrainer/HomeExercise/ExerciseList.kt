@@ -135,7 +135,7 @@ fun cardExerciseDetails(
 }
 
 @Composable
-fun exercisesCards() {
+fun  exercisesCards() {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
