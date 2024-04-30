@@ -37,6 +37,7 @@ import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
 import edu.unicauca.personaltrainer.Personalized.Personalize
 import edu.unicauca.personaltrainer.Personalized.Routine
 import edu.unicauca.personaltrainer.Personalized.SampleRoutines
+import edu.unicauca.personaltrainer.exercises.ExerciseList
 import edu.unicauca.personaltrainer.exercises.ExercisesComplete
 import edu.unicauca.personaltrainer.ui.theme.BlueMain
 

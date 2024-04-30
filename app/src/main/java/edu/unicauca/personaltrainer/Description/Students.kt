@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,7 +39,7 @@ fun headerDescription(modifier: Modifier = Modifier){
         Text(
             text = stringResource(R.string.title_description) ,
             modifier = modifier
-                .padding(bottom = 20.dp),
+                .padding(bottom = 5.dp),
             style = MaterialTheme.typography.titleLarge,
             color = Color(0xFF1D4EA5)
         )
@@ -64,6 +66,7 @@ fun Description(
         )
         Text(text = "Desarrolladores:",
             style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(top = 20.dp),
             color = Color(0xFF1D4EA5)
         )
     }
@@ -77,7 +80,7 @@ fun cardStudent(
 ) {
     Row(
         modifier = Modifier
-            .padding(top = 120.dp, start = 20.dp, end = 20.dp, bottom = 20.dp)
+            .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
             .fillMaxWidth()
             .height(150.dp)
             .border(1.dp, Color(0xFF1D4EA5), shape = RoundedCornerShape(0.dp))
@@ -101,7 +104,7 @@ fun developers(){
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(0.dp)
     ) {
-        items(4) { index ->
+        items(3) { index ->
             cardStudent(
                 imageResource = when (index) {
                     0 -> R.drawable.camacho
@@ -121,9 +124,20 @@ fun developers(){
 }
 
 @Composable
+fun descriptionStudents(){
+    Surface (
+        modifier = Modifier.fillMaxSize()
+    ){
+        Column {
+            Description();
+            developers();
+        }
+    }
+}
+
+@Composable
 @Preview(showBackground = true)
 fun previewDescription(){
-    //Description()
-    developers()
+    descriptionStudents();
 }
 
