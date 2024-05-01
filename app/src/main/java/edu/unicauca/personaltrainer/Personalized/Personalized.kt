@@ -28,10 +28,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import edu.unicauca.personaltrainer.AppRoute
+import edu.unicauca.personaltrainer.CurrentUser
+import edu.unicauca.personaltrainer.NavItem
 import edu.unicauca.personaltrainer.R
+import edu.unicauca.personaltrainer.exercises.ExercisesComplete
 import edu.unicauca.personaltrainer.ui.theme.BlueMain
 import edu.unicauca.personaltrainer.ui.theme.Container
 import edu.unicauca.personaltrainer.ui.theme.YellowSecondary
+
 
 @Composable
 fun PersonalizedVoid(){
@@ -81,7 +87,7 @@ fun PersonalizedVoid(){
 data class Exercise(val name:String, val description: String, val icon: Int, val muscles:List<String>)
 data class Routine (val tittle:String, val icon:Int, val exercises:List<Exercise>)
 @Composable
-fun RoutineCard(routine:Routine){
+fun RoutineCard(routine:Routine, navController: NavController, user: CurrentUser, pos:Int){
     Row (
         Modifier
             .fillMaxWidth()
@@ -149,7 +155,12 @@ fun RoutineCard(routine:Routine){
             }
             Row(horizontalArrangement = Arrangement.End){
                 Button(
-                    onClick = { /*TODO*/ },
+
+                    onClick = {
+                        user.exercises = routine.exercises
+                        user.option = pos
+                        navController.navigate(AppRoute.ExercisesRoutine)
+                              },
                     colors = ButtonDefaults.buttonColors(YellowSecondary),
                     modifier = Modifier .weight(1f)
                 ) {
@@ -163,20 +174,21 @@ fun RoutineCard(routine:Routine){
     }
 }
 @Composable
-fun RoutineList(routines: List<Routine>)
+fun RoutineList(routines: List<Routine>, navController: NavController, user: CurrentUser)
 {
     LazyColumn(
         Modifier
             .padding(horizontal = 20.dp)
     ){
+        var i:Int = 0
         items(routines){
             element ->
-                RoutineCard(routine = element)
+                RoutineCard(routine = element, navController, user = user, pos = i++)
         }
     }
 }
 @Composable
-fun Personalize(routines: List<Routine>)
+fun Personalize(user:CurrentUser, navController: NavController)
 {
     Column (
         Modifier.fillMaxWidth()
@@ -191,10 +203,10 @@ fun Personalize(routines: List<Routine>)
                 color = BlueMain
             )
         }
-        if(routines.isNotEmpty())
+        if(user.routines.isNotEmpty())
         {
             Row {
-                RoutineList(routines = routines)
+                RoutineList(routines = user.routines, navController, user = user)
             }
         }
         else
@@ -214,7 +226,7 @@ fun PreviewVoid()
         PersonalizedVoid()
     }
 }
-
+/*
 @Preview
 @Composable
 fun PreviewRoutineCard()
@@ -249,3 +261,4 @@ fun PreviewPersonalizeItems()
         Personalize(routines = SampleRoutines.routineSample)
     }
 }
+*/

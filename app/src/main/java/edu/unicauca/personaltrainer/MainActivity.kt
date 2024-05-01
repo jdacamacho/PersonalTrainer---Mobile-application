@@ -3,6 +3,7 @@ package edu.unicauca.personaltrainer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
@@ -25,15 +26,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import edu.unicauca.personaltrainer.Auth.form
 import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
 import edu.unicauca.personaltrainer.Personalized.Personalize
+import edu.unicauca.personaltrainer.Personalized.Routine
 import edu.unicauca.personaltrainer.Personalized.SampleRoutines
 import edu.unicauca.personaltrainer.exercises.ExerciseList
+import edu.unicauca.personaltrainer.exercises.ExercisesComplete
 import edu.unicauca.personaltrainer.ui.theme.BlueMain
 
 
@@ -49,6 +54,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val currentUser:CurrentUser by viewModels()
+
                     val navController = rememberNavController()
                     val navigateAction = remember(navController){
                         NavegationActions(navController)
@@ -58,7 +65,8 @@ class MainActivity : ComponentActivity() {
 
                     AppContent(navController = navController,
                         selectedDestination = selectedDestination,
-                        navigate = navigateAction::navigateTo)
+                        navigate = navigateAction::navigateTo,
+                        user = currentUser)
                 }
             }
         }
@@ -103,7 +111,8 @@ fun AppContent(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     selectedDestination:String,
-    navigate:(NavItem)->Unit
+    navigate:(NavItem)->Unit,
+    user:CurrentUser
 )
 {
     Row()
@@ -116,8 +125,9 @@ fun AppContent(
                 composable(AppRoute.Routine){
                     routineExercisesBasic()
                 }
-                composable(AppRoute.Personalize){
-                    Personalize(SampleRoutines.routineSample)
+                composable(AppRoute.Personalize)
+                {
+                    Personalize(navController = navController, user = user)
                 }
                 composable(AppRoute.Exercises){
 
@@ -128,6 +138,9 @@ fun AppContent(
                 composable(AppRoute.Me){
 
                 }
+                composable(AppRoute.ExercisesRoutine){
+                    ExercisesComplete(routine = user.routines[user.option], user = user, navController = navController)
+                }
             }
             MyAppBottomNavigation(
                 selectedDestination = selectedDestination,
@@ -135,7 +148,7 @@ fun AppContent(
         }
     }
 }
-
+/*
 @Preview
 @Composable
 fun PreviewNavegacion(){
@@ -143,6 +156,7 @@ fun PreviewNavegacion(){
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
+        val currentUser:CurrentUser by viewModels()
         val navController = rememberNavController()
         val navigateAction = remember(navController){
             NavegationActions(navController)
@@ -152,10 +166,11 @@ fun PreviewNavegacion(){
 
         AppContent(navController = navController,
             selectedDestination = selectedDestination,
-            navigate = navigateAction::navigateTo)
+            navigate = navigateAction::navigateTo,
+            user = currentUser)
     }
 }
-
+*/
 
 
 
