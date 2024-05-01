@@ -17,7 +17,7 @@ object SampleExercises {
         ),
         Exercise(name = "Press plano con barra",
             description =  "Ejercicio clásico para pectorales. Se realiza acostado en un banco plano levantando y bajando la barra sobre el pecho.",
-            icon = R.drawable.bancoinclinado,
+            icon = R.drawable.bancoplano,
             muscles = listOf("Pecho")
         ),
         Exercise(name = "Curl de bíceps con barra Z",

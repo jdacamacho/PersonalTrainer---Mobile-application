@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import edu.unicauca.personaltrainer.Personalized.SampleExercises
 import edu.unicauca.personaltrainer.R
 
 @Composable
@@ -207,23 +209,11 @@ fun routineCardLegs() {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(SampleExercises.exerciseSample) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Sentadilla Smith"
-                    1 -> "Sentadilla Hack"
-                    2 -> "Femoral acostado"
-                    3 -> "Peso muerto con mancuernas"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.sentadillasmith
-                    1 -> R.drawable.hacka
-                    2 -> R.drawable.femoral
-                    3 -> R.drawable.pesomuertp
-                    else -> 0
-                },
-                repeats = "12 repeticiones x 4 sets"
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
+                repeats = "12 repeticiones x 4 sets" // Puedes cambiar esto según lo que desees mostrar para cada ejercicio
             )
         }
     }
@@ -280,5 +270,5 @@ fun basicBack(){
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    basicBack();
+    basicLegs();
 }
