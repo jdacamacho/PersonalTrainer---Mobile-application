@@ -123,25 +123,23 @@ fun cardExerciseDetails(
 
 @Composable
 fun routineCardArms() {
+    val selectedIndexes = listOf(3, 4, 5, 6);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Curl con mancuernas"
-                    1 -> "Curl con barra"
-                    2 -> "Curl martillo"
-                    3 -> "Curl predicador"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.curl_biceps
-                    1 -> R.drawable.curl_barra
-                    2 -> R.drawable.curl_martillo
-                    3 -> R.drawable.predicador_biceps
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -150,25 +148,23 @@ fun routineCardArms() {
 
 @Composable
 fun routineCardBack() {
+    val selectedIndexes = listOf(12, 13, 14, 15);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Jalon al pecho"
-                    1 -> "Remo T"
-                    2 -> "Remo con barra"
-                    3 -> "Jalon sentado"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.jalonalpecho
-                    1 -> R.drawable.remot
-                    2 -> R.drawable.remoconbarra
-                    3 -> R.drawable.remosentado
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -178,25 +174,23 @@ fun routineCardBack() {
 
 @Composable
 fun routineCardChest() {
+    val selectedIndexes = listOf(0, 1, 2, 11);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Press banco plano"
-                    1 -> "Press banco inclinado"
-                    2 -> "Press con mancuernas"
-                    3 -> "Fondos"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.bancoplano
-                    1 -> R.drawable.bancoinclinado
-                    2 -> R.drawable.bancomancuernas
-                    3 -> R.drawable.fondos
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -206,14 +200,25 @@ fun routineCardChest() {
 
 @Composable
 fun routineCardLegs() {
+
+    val selectedIndexes = listOf(7, 8, 9, 10);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(SampleExercises.exerciseSample) { exercise ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
                 kindExercise = exercise.name,
                 imageResource = exercise.icon,
-                repeats = "12 repeticiones x 4 sets" // Puedes cambiar esto según lo que desees mostrar para cada ejercicio
+                repeats = "12 repeticiones x 4 sets"
             )
         }
     }
@@ -270,5 +275,5 @@ fun basicBack(){
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    basicLegs();
+    basicArms();
 }
