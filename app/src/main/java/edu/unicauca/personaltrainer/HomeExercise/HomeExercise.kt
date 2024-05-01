@@ -126,7 +126,7 @@ fun routineCards() {
         items(4) { index ->
             cardExercise(
                 imageResource = when (index) {
-                    0 -> R.drawable.brazos
+                    0 -> R.drawable.musculo
                     1 -> R.drawable.espalda
                     2 -> R.drawable.pecho
                     3 -> R.drawable.pierna
@@ -140,7 +140,7 @@ fun routineCards() {
                     else -> ""
                 },
                 numberOfExercises = "4 ejercicios",
-                exercises = when (index){
+                exercises = when (index) {
                     0 -> "Curl con mancuernas\nCurl con barra\nCurl martillo\nCurl Predicador"
                     1 -> "Jalon al pecho\nRemo T\nRemo con barra\nJalon sentado"
                     2 -> "Press banca plano\nPress banca inclinado\nPress con mancuernas\nFondos"
@@ -167,5 +167,5 @@ fun routineExercisesBasic(){
 @Preview(showBackground = true)
 @Composable
 fun routineExercises(){
-    routineExercisesBasic();
+    routineCards();
 }
