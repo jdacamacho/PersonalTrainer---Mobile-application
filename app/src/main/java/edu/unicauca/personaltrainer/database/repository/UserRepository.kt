@@ -41,7 +41,7 @@ class UserRepository (private val context:Context){
             this.userRoutineDAO.insert(it)
         }
     }
-
+    /*
     suspend fun fetch(): LiveData<List<UserRoutines>> {
         val data = this.userRoutineDAO.getAll()
         data.value?.forEach {
@@ -49,4 +49,5 @@ class UserRepository (private val context:Context){
         }
         return data
     }
+    */
 }

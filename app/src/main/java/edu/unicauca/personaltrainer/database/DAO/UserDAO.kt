@@ -10,7 +10,7 @@ import edu.unicauca.personaltrainer.database.Entity.UserRoutinesEntity
 @Dao
 interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun insert(user: UserRoutinesEntity)
+    suspend fun insert(user: UserEntity)
 
      @Query("SELECT * FROM User WHERE userName = :login AND  userPassword = :pass")
      suspend fun login(login:String, pass:String): UserEntity;
