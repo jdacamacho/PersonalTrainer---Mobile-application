@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import edu.unicauca.personaltrainer.Personalized.SampleExercises
 import edu.unicauca.personaltrainer.R
 
 @Composable
@@ -121,25 +123,23 @@ fun cardExerciseDetails(
 
 @Composable
 fun routineCardArms() {
+    val selectedIndexes = listOf(3, 4, 5, 6);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Curl con mancuernas"
-                    1 -> "Curl con barra"
-                    2 -> "Curl martillo"
-                    3 -> "Curl predicador"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.curl_biceps
-                    1 -> R.drawable.curl_barra
-                    2 -> R.drawable.curl_martillo
-                    3 -> R.drawable.predicador_biceps
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -148,25 +148,23 @@ fun routineCardArms() {
 
 @Composable
 fun routineCardBack() {
+    val selectedIndexes = listOf(12, 13, 14, 15);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Jalon al pecho"
-                    1 -> "Remo T"
-                    2 -> "Remo con barra"
-                    3 -> "Jalon sentado"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.jalonalpecho
-                    1 -> R.drawable.remot
-                    2 -> R.drawable.remoconbarra
-                    3 -> R.drawable.remosentado
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -176,25 +174,23 @@ fun routineCardBack() {
 
 @Composable
 fun routineCardChest() {
+    val selectedIndexes = listOf(0, 1, 2, 11);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Press banco plano"
-                    1 -> "Press banco inclinado"
-                    2 -> "Press con mancuernas"
-                    3 -> "Fondos"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.bancoplano
-                    1 -> R.drawable.bancoinclinado
-                    2 -> R.drawable.bancomancuernas
-                    3 -> R.drawable.fondos
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -204,25 +200,24 @@ fun routineCardChest() {
 
 @Composable
 fun routineCardLegs() {
+
+    val selectedIndexes = listOf(7, 8, 9, 10);
+
+    val selectedExercises = selectedIndexes.mapNotNull { index ->
+        if (index in SampleExercises.exerciseSample.indices) {
+            SampleExercises.exerciseSample[index];
+        } else {
+            null;
+        }
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(4) { index ->
+        items(selectedExercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Sentadilla Smith"
-                    1 -> "Sentadilla Hack"
-                    2 -> "Femoral acostado"
-                    3 -> "Peso muerto con mancuernas"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.sentadillasmith
-                    1 -> R.drawable.hacka
-                    2 -> R.drawable.femoral
-                    3 -> R.drawable.pesomuertp
-                    else -> 0
-                },
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
                 repeats = "12 repeticiones x 4 sets"
             )
         }
@@ -280,5 +275,5 @@ fun basicBack(){
 @Preview(showBackground = true)
 @Composable
 fun routineLookExercise(){
-    basicBack();
+    basicArms();
 }
