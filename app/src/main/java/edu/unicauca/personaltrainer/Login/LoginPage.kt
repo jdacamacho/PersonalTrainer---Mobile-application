@@ -29,6 +29,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import edu.unicauca.personaltrainer.Auth.fieldForm
 import edu.unicauca.personaltrainer.R
 import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
@@ -66,7 +68,7 @@ fun headerForm(modifier: Modifier = Modifier){
 }
 
 @Composable
-fun SignIn(modifier: Modifier = Modifier){
+fun SignIn(navController: NavController, modifier: Modifier = Modifier){
     Surface (modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         PersonalTrainerTheme {
             Column(
@@ -99,7 +101,7 @@ fun SignIn(modifier: Modifier = Modifier){
                         }
                         item{
                             Spacer(modifier = Modifier.height(32.dp))
-                            edu.unicauca.personaltrainer.Auth.registerButtomForm(onClick = {});
+                            edu.unicauca.personaltrainer.Auth.registerButtomForm(onClick = {navController.navigate("home")});
                         }
                     }
                 }
@@ -121,13 +123,13 @@ fun registerButtomForm(onClick: () -> Unit) {
 }
 
 @Composable
-fun LoginPage(modifier: Modifier = Modifier){
+fun LoginPage(navController: NavController, modifier: Modifier = Modifier){
     Surface (
         modifier = Modifier.fillMaxSize()
     ){
         Column {
             headerForm()
-            SignIn()
+            SignIn(navController = navController)
         }
     }
 }
@@ -136,7 +138,8 @@ fun LoginPage(modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun SignInPreview(){
+    val navController = rememberNavController()
     PersonalTrainerTheme {
-        LoginPage()
+        LoginPage(navController = navController)
     }
 }

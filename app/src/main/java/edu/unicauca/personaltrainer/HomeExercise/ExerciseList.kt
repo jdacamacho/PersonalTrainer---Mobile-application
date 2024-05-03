@@ -29,12 +29,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import edu.unicauca.personaltrainer.CurrentUser
 import edu.unicauca.personaltrainer.Personalized.Exercise
 import edu.unicauca.personaltrainer.Personalized.SampleExercises
 import edu.unicauca.personaltrainer.R
+import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
 
 @Composable
-fun HeaderExercisesList(modifier: Modifier = Modifier){
+fun HeaderExercisesList(navController: NavController, modifier: Modifier = Modifier){
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -60,25 +64,25 @@ fun HeaderExercisesList(modifier: Modifier = Modifier){
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("brazo") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Brazo", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("espalda") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Espalda", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("pecho") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Pecho", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("pierna") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Pierna", color = Color.Blue)
@@ -115,13 +119,14 @@ fun ImageLookExercisesList(
 fun cardExerciseDetails(
     kindExercise: String,
     imageResource: Int,
+    user: CurrentUser
 ){
     HeaderLookExercise(kindExercise = kindExercise);
     ImageLookExercise(imageResource = imageResource);
 }
 
 @Composable
-fun exercisesCards(exercises: List<Exercise>) {
+fun exercisesCards(exercises: List<Exercise>, user: CurrentUser) {
     val selectedIndexes = remember { mutableListOf<Boolean>() }
 
     for (i in exercises.indices) {
@@ -135,20 +140,29 @@ fun exercisesCards(exercises: List<Exercise>) {
             cardExerciseDetails(
                 kindExercise = exercise.name,
                 imageResource = exercise.icon,
+                user = user
             )
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun ExerciseMenu(){
+fun ExerciseMenu(navController: NavController, user:CurrentUser){
     Surface (
         modifier = Modifier.fillMaxSize()
     ){
         Column {
-            HeaderExercisesList()
-            exercisesCards(exercises = SampleExercises.exerciseSample)
+            HeaderExercisesList(navController = navController)
+            exercisesCards(exercises = SampleExercises.exerciseSample, user= user)
         }
     }
 }
+
+/*@Preview(showBackground = true)
+@Composable
+fun ExerciseMenuPreview(){
+    val navController = rememberNavController()
+    PersonalTrainerTheme {
+        ExerciseMenu(navController = navController)
+    }
+}*/
