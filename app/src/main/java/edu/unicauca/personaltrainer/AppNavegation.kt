@@ -45,6 +45,10 @@ object AppRoute{
     const val Records = "Records"
     const val Me = "Me"
     const val ExercisesRoutine = "ExercisesRoutine"
+    const val BasicChest = "BasicChest"
+    const val BasicBack = "BasicBack"
+    const val BasicLegs = "BasicLegs"
+    const val BasicArms = "BasicArms"
 }
 
 class NavegationActions(

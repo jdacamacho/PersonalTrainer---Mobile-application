@@ -33,6 +33,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import edu.unicauca.personaltrainer.Auth.form
+import edu.unicauca.personaltrainer.HomeExercise.basicArms
+import edu.unicauca.personaltrainer.HomeExercise.basicBack
+import edu.unicauca.personaltrainer.HomeExercise.basicChest
+import edu.unicauca.personaltrainer.HomeExercise.basicLegs
 import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
 import edu.unicauca.personaltrainer.Personalized.Personalize
 import edu.unicauca.personaltrainer.Personalized.Routine
@@ -123,7 +127,7 @@ fun AppContent(
                 navController = navController,
                 startDestination = AppRoute.Personalize){
                 composable(AppRoute.Routine){
-                    routineExercisesBasic()
+                    routineExercisesBasic(navController = navController)
                 }
                 composable(AppRoute.Personalize)
                 {
@@ -140,6 +144,18 @@ fun AppContent(
                 }
                 composable(AppRoute.ExercisesRoutine){
                     ExercisesComplete(routine = user.routines[user.option], user = user, navController = navController)
+                }
+                composable(AppRoute.BasicArms){
+                    basicArms();
+                }
+                composable(AppRoute.BasicBack){
+                    basicBack();
+                }
+                composable(AppRoute.BasicLegs){
+                    basicLegs();
+                }
+                composable(AppRoute.BasicChest){
+                    basicChest();
                 }
             }
             MyAppBottomNavigation(

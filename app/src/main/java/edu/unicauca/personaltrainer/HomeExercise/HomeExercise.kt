@@ -29,10 +29,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import edu.unicauca.personaltrainer.AppContent
+import edu.unicauca.personaltrainer.AppRoute
 import edu.unicauca.personaltrainer.R
+import edu.unicauca.personaltrainer.ui.theme.BlueMain
+import edu.unicauca.personaltrainer.ui.theme.YellowSecondary
 
 @Composable
 fun headerHomeRoutines(modifier: Modifier = Modifier){
@@ -55,12 +60,14 @@ fun lookExercise(onClick: () -> Unit) {
     Button(
         onClick = onClick,
         modifier = Modifier
-            .width(300.dp)
+            .fillMaxWidth()
             .padding(bottom = 20.dp)
             .height(40.dp),
-        colors = ButtonDefaults.buttonColors(Color(0xFF1D4EA5))
+        colors = ButtonDefaults.buttonColors(YellowSecondary )
     ) {
-        Text(text = stringResource(R.string.butto_look_routine))
+        Text(text = stringResource(R.string.butto_look_routine),
+            style = TextStyle(color = BlueMain)
+        )
     }
 }
 
@@ -70,7 +77,8 @@ fun cardExercise(
     kindExercise: String,
     numberOfExercises: String,
     modifier: Modifier = Modifier,
-    exercises: String
+    exercises: String,
+    navController: NavController
 ){
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -78,7 +86,7 @@ fun cardExercise(
             .padding(16.dp)
             .background(Color.LightGray)
             .fillMaxWidth()
-            .border(1.dp, Color(0xFF1D4EA5), shape = RoundedCornerShape(8.dp))
+            .border(1.dp, Color.LightGray, shape = RoundedCornerShape(20.dp))
     ){
         Row (
             modifier = Modifier
@@ -115,12 +123,12 @@ fun cardExercise(
                     .padding(bottom = 20.dp)
             )
         }
-        lookExercise(onClick = {});
+        lookExercise(onClick = {navController.navigate(AppRoute.BasicArms)});
     }
 }
 
 @Composable
-fun routineCards() {
+fun routineCards(navController: NavController) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
@@ -147,26 +155,27 @@ fun routineCards() {
                     2 -> "Press banca plano\nPress banca inclinado\nPress con mancuernas\nFondos"
                     3 -> "Sentadilla en Smith\nSentadilla Hack\nFemoral acostado\nPeso muerto con barra"
                     else -> ""
-                }
+                },
+                navController = navController
             )
         }
     }
 }
 @Composable
-fun routineExercisesBasic(){
+fun routineExercisesBasic(navController: NavController){
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
         ){
             headerHomeRoutines();
-            routineCards();
+            routineCards(navController);
         }
     }
 }
 
-@Preview(showBackground = true)
+
 @Composable
-fun routineExercises(){
-    routineCards();
+fun routineExercises(navController: NavController){
+    routineCards(navController);
 }
