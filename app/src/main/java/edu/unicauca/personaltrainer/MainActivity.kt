@@ -33,6 +33,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import edu.unicauca.personaltrainer.Auth.form
+import edu.unicauca.personaltrainer.Description.descriptionStudents
 import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
 import edu.unicauca.personaltrainer.Personalized.Personalize
 import edu.unicauca.personaltrainer.Personalized.Routine
@@ -136,7 +137,7 @@ fun AppContent(
 
                 }
                 composable(AppRoute.Me){
-
+                    descriptionStudents();
                 }
                 composable(AppRoute.ExercisesRoutine){
                     ExercisesComplete(routine = user.routines[user.option], user = user, navController = navController)
