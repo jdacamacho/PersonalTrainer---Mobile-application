@@ -1,5 +1,6 @@
 package edu.unicauca.personaltrainer
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,14 +34,20 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import edu.unicauca.personaltrainer.Auth.form
+
 import edu.unicauca.personaltrainer.HomeExercise.basicArms
 import edu.unicauca.personaltrainer.HomeExercise.basicBack
 import edu.unicauca.personaltrainer.HomeExercise.basicChest
 import edu.unicauca.personaltrainer.HomeExercise.basicLegs
+
+import edu.unicauca.personaltrainer.HomeExercise.ExerciseMenu
+
 import edu.unicauca.personaltrainer.HomeExercise.routineExercisesBasic
+import edu.unicauca.personaltrainer.Login.LoginPage
 import edu.unicauca.personaltrainer.Personalized.Personalize
 import edu.unicauca.personaltrainer.Personalized.Routine
 import edu.unicauca.personaltrainer.Personalized.SampleRoutines
+import edu.unicauca.personaltrainer.Welcome.WelcomePage
 import edu.unicauca.personaltrainer.exercises.ExerciseList
 import edu.unicauca.personaltrainer.exercises.ExercisesComplete
 import edu.unicauca.personaltrainer.ui.theme.BlueMain
@@ -110,6 +117,7 @@ fun MyAppBottomNavigation(
         }
     }
 }
+
 @Composable
 fun AppContent(
     modifier: Modifier = Modifier,
@@ -154,8 +162,17 @@ fun AppContent(
                 composable(AppRoute.BasicLegs){
                     basicLegs();
                 }
-                composable(AppRoute.BasicChest){
+                composable(AppRoute.BasicChest) {
                     basicChest();
+                }
+                composable(AppRoute.Login){
+                    LoginPage(navController = navController)
+                }
+                composable(AppRoute.Welcome){
+                    WelcomePage(navController = navController)
+                }
+                composable(AppRoute.ExerciseList){
+                    ExerciseMenu(navController = navController, user = user)
                 }
             }
             MyAppBottomNavigation(
@@ -164,6 +181,7 @@ fun AppContent(
         }
     }
 }
+
 /*
 @Preview
 @Composable

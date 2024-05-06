@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,10 +29,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import edu.unicauca.personaltrainer.CurrentUser
+import edu.unicauca.personaltrainer.Personalized.Exercise
+import edu.unicauca.personaltrainer.Personalized.SampleExercises
 import edu.unicauca.personaltrainer.R
+import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
 
 @Composable
-fun HeaderExercisesList(modifier: Modifier = Modifier){
+fun HeaderExercisesList(navController: NavController, modifier: Modifier = Modifier){
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -56,25 +64,25 @@ fun HeaderExercisesList(modifier: Modifier = Modifier){
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("brazo") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Brazo", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("espalda") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Espalda", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("pecho") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Pecho", color = Color.Blue)
             }
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("pierna") },
                 colors = ButtonDefaults.buttonColors(Color.LightGray)
             ) {
                 Text(text = "Pierna", color = Color.Blue)
@@ -83,24 +91,6 @@ fun HeaderExercisesList(modifier: Modifier = Modifier){
     }
 }
 
-@Composable
-fun HeaderLookExercisesList(
-    modifier: Modifier = Modifier,
-    kindExercise: String
-){
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = kindExercise,
-            modifier = modifier
-                .paddingFromBaseline(top = 30.dp, bottom = 8.dp),
-            style = MaterialTheme.typography.titleLarge,
-            color = Color(0xFF1D4EA5)
-        )
-    }
-}
 
 @Composable
 fun ImageLookExercisesList(
@@ -129,70 +119,50 @@ fun ImageLookExercisesList(
 fun cardExerciseDetails(
     kindExercise: String,
     imageResource: Int,
+    user: CurrentUser
 ){
     HeaderLookExercise(kindExercise = kindExercise);
     ImageLookExercise(imageResource = imageResource);
 }
 
 @Composable
-fun  exercisesCards() {
+fun exercisesCards(exercises: List<Exercise>, user: CurrentUser) {
+    val selectedIndexes = remember { mutableListOf<Boolean>() }
+
+    for (i in exercises.indices) {
+        selectedIndexes.add(false)
+    }
+
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        items(16) { index ->
+        items(exercises) { exercise ->
             cardExerciseDetails(
-                kindExercise = when (index) {
-                    0 -> "Curl con mancuernas"
-                    1 -> "Curl con barra"
-                    2 -> "Curl martillo"
-                    3 -> "Curl predicador"
-                    4 -> "Jalon al pecho"
-                    5 -> "Remo T"
-                    6 -> "Remo con barra"
-                    7 -> "Jalon sentado"
-                    8 -> "Press banco plano"
-                    9 -> "Press banco inclinado"
-                    10 -> "Press con mancuernas"
-                    11 -> "Fondos"
-                    12 -> "Sentadilla Smith"
-                    13 -> "Sentadilla Hack"
-                    14 -> "Femoral acostado"
-                    15 -> "Peso muerto con mancuernas"
-                    else -> ""
-                },
-                imageResource = when (index) {
-                    0 -> R.drawable.curl_biceps
-                    1 -> R.drawable.curl_barra
-                    2 -> R.drawable.curl_martillo
-                    3 -> R.drawable.predicador_biceps
-                    4 -> R.drawable.jalonalpecho
-                    5 -> R.drawable.remot
-                    6 -> R.drawable.remoconbarra
-                    7 -> R.drawable.remosentado
-                    8 -> R.drawable.bancoplano
-                    9 -> R.drawable.bancoinclinado
-                    10 -> R.drawable.bancomancuernas
-                    11 -> R.drawable.fondos
-                    12 -> R.drawable.sentadillasmith
-                    13 -> R.drawable.hacka
-                    14 -> R.drawable.femoral
-                    15 -> R.drawable.pesomuertp
-                    else -> 0
-                }
+                kindExercise = exercise.name,
+                imageResource = exercise.icon,
+                user = user
             )
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun ExerciseMenu(){
+fun ExerciseMenu(navController: NavController, user:CurrentUser){
     Surface (
         modifier = Modifier.fillMaxSize()
     ){
         Column {
-            HeaderExercisesList()
-            exercisesCards()
+            HeaderExercisesList(navController = navController)
+            exercisesCards(exercises = SampleExercises.exerciseSample, user= user)
         }
     }
 }
+
+/*@Preview(showBackground = true)
+@Composable
+fun ExerciseMenuPreview(){
+    val navController = rememberNavController()
+    PersonalTrainerTheme {
+        ExerciseMenu(navController = navController)
+    }
+}*/

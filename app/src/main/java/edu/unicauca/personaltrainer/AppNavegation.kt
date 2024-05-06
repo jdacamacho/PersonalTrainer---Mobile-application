@@ -38,7 +38,7 @@ val Nav_Items = listOf(
     ),
 )
 
-object AppRoute{
+object AppRoute {
     const val Routine = "Routine"
     const val Personalize = "Personalize"
     const val Exercises = "Exercises"
@@ -49,6 +49,9 @@ object AppRoute{
     const val BasicBack = "BasicBack"
     const val BasicLegs = "BasicLegs"
     const val BasicArms = "BasicArms"
+    const val Login = "Login"
+    const val Welcome = "Welcome"
+    const val ExerciseList = "ExerciseList"
 }
 
 class NavegationActions(

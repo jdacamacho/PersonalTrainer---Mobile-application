@@ -27,8 +27,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import edu.unicauca.personaltrainer.R
 import edu.unicauca.personaltrainer.ui.theme.PersonalTrainerTheme
+import edu.unicauca.personaltrainer.ui.theme.YellowSecondary
 
 
 @Composable
@@ -64,7 +67,7 @@ fun headerForm(modifier: Modifier = Modifier){
 }
 
 @Composable
-fun OpenPage(modifier: Modifier = Modifier){
+fun OpenPage(navController: NavController, modifier: Modifier = Modifier){
     Surface (modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         PersonalTrainerTheme {
 
@@ -82,7 +85,7 @@ fun OpenPage(modifier: Modifier = Modifier){
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.navigate("iniciar sesion") },
                             colors = ButtonDefaults.buttonColors(Color.Blue),
                             modifier = Modifier.size(250.dp, 50.dp) // Establece el tamaño del botón
                         ) {
@@ -90,15 +93,15 @@ fun OpenPage(modifier: Modifier = Modifier){
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Button(
-                            onClick = { /*TODO*/ },
-                            colors = ButtonDefaults.buttonColors(Color.Red),
+                            onClick = { navController.navigate("crear cuenta") },
+                            colors = ButtonDefaults.buttonColors(YellowSecondary),
                             modifier = Modifier.size(250.dp, 50.dp) // Establece el tamaño del botón
                         ) {
                             Text(text = "Crear cuenta")
                         }
                         Spacer(modifier = Modifier.height(10.dp))
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.navigate("continuar como anonimo") },
                             colors = ButtonDefaults.buttonColors(Color.LightGray),
                             modifier = Modifier.size(250.dp, 50.dp) // Establece el tamaño del botón
                         ) {
@@ -113,13 +116,13 @@ fun OpenPage(modifier: Modifier = Modifier){
 
 
 @Composable
-fun WelcomePage(modifier: Modifier = Modifier){
+fun WelcomePage(navController: NavController, modifier: Modifier = Modifier){
     Surface (
         modifier = Modifier.fillMaxSize()
     ){
         Column {
             headerForm()
-            OpenPage()
+            OpenPage(navController = navController)
         }
     }
 }
@@ -127,7 +130,8 @@ fun WelcomePage(modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun OpenPagePreview(){
+    val navController = rememberNavController()
     PersonalTrainerTheme {
-        WelcomePage()
+        WelcomePage(navController = navController)
     }
 }

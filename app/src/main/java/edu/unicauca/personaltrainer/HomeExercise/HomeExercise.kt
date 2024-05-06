@@ -179,3 +179,9 @@ fun routineExercisesBasic(navController: NavController){
 fun routineExercises(navController: NavController){
     routineCards(navController);
 }
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewNavegacion(){
+
+}
